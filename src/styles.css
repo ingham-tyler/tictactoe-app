@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0; 
+    padding: 0;
+    height: 100%; 
+}
+
+h1, h2, h3 {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+ul, ol {
+    padding-left: 1.5em;
+    list-style-position: inside;
+}
+
+#game {
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 15px 1rem;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+#gameStatus {
+    margin-bottom: 2rem;
+}
+
+.cell {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: azure;
+    text-align: center;
+    color: black;
+    height: 22vh;
+    line-height: 22vh;
+    font-size: 20vh;
+}
+
+.paintedGameBoard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 4px;
+    width: 60%;
+    margin: 2rem auto;
+    max-height: 80%;
+}
