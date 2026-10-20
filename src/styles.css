@@ -1,13 +1,30 @@
+:root {
+    --cell-bg: azure;
+    --cell-fg: black;
+    --cell-border: black;
+    --cell-radius: 10px;
+    --board-gap: 4px;
+    --page-pad: clamp(0.75rem, 3vmin, 1.5rem);
+ 
+    --cell-bg-hover: color-mix(in srgb, var(--cell-bg), var(--cell-fg) 6%);
+    --cell-bg-active: color-mix(in srgb, var(--cell-bg), var(--cell-fg) 12%);
+}
+
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
+ 
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
 
 body {
-    margin: 0; 
-    padding: 0;
-    height: 100%; 
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.4;
 }
 
 h1, h2, h3 {
@@ -25,36 +42,132 @@ ul, ol {
 }
 
 #game {
-    overflow: hidden;
-    min-height: 100vh;
-    padding: 15px 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows:
+        auto
+        auto
+        minmax(0, min(32rem, 100vw - 2 * var(--page-pad)))
+        auto;
+    grid-template-areas:
+        "title"
+        "status"
+        "board"
+        "reset";
+    align-content: center;
+    justify-items: center;
+    row-gap: clamp(0.5rem, 2vmin, 1.25rem);
+    column-gap: clamp(1rem, 4vmin, 2.5rem);
+    height: 100vh;
+    height: 100dvh;
+    min-height: 18rem;
+    padding: var(--page-pad);
 }
 
-h1 {
-    margin-bottom: 2rem;
+#game h1 {
+    grid-area: title;
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw + 0.75rem, 2.5rem);
+    line-height: 1.1;
+    text-align: center;
 }
 
-#gameStatus {
-    margin-bottom: 2rem;
+#game-status {
+    grid-area: status;
+    min-height: 1.4em;
+    font-size: clamp(1rem, 1.5vw + 0.75rem, 1.375rem);
+    text-align: center;
+}
+
+.board-area {
+    grid-area: board;
+    justify-self: stretch;
+    align-self: stretch;
+    min-width: 0;
+    min-height: 0;
+    container-type: size;
+    display: grid;
+    place-items: center;
+}
+
+.painted-game-board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: var(--board-gap);
+    width: min(90vmin, 32rem);
+    width: min(100cqmin, 32rem);
+    aspect-ratio: 1;
+    container-type: inline-size;
 }
 
 .cell {
-    border: 1px solid black;
-    border-radius: 10px;
-    background-color: azure;
-    text-align: center;
-    color: black;
-    height: 22vh;
-    line-height: 22vh;
-    font-size: 20vh;
+    display: grid;
+    place-items: center;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    border: 1px solid var(--cell-border);
+    border-radius: var(--cell-radius);
+    background-color: var(--cell-bg);
+    color: var(--cell-fg);
+    font-size: 15vmin;
+    font-size: 22cqi;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
 }
 
-.paintedGameBoard {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 4px;
-    width: 60%;
-    margin: 2rem auto;
-    max-height: 80%;
+.cell:active {
+    background-color: var(--cell-bg-active);
+}
+
+#reset-btn {
+    grid-area: reset;
+    min-height: 44px;
+    padding: 0.5em 1.5em;
+    border: 1px solid var(--cell-border);
+    border-radius: var(--cell-radius);
+    background-color: var(--cell-bg);
+    color: var(--cell-fg);
+    font: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+#reset-btn:active {
+    background-color: var(--cell-bg-active);
+}
+
+#reset-btn:focus-visible {
+    outline: 3px solid var(--cell-fg);
+    outline-offset: 2px;
+}
+
+@media (hover: hover) {
+    .cell:hover,
+    #reset-btn:hover {
+        background-color: var(--cell-bg-hover);
+    }
+}
+
+@media (orientation: landscape) and (max-height: 32rem) {
+    #game {
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-rows: 1fr auto auto auto 1fr;
+        grid-template-areas:
+            ".      board"
+            "title  board"
+            "status board"
+            "reset  board"
+            ".      board";
+    }
+
+    #game h1 {
+        font-size: clamp(1.25rem, 7vh, 2rem);
+    }
 }

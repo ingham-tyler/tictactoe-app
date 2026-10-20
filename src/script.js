@@ -28,7 +28,7 @@ function initBoard() {
         gameBoard.appendChild(cell);
     }
 
-    gameBoard.classList.add('paintedGameBoard')
+    gameBoard.classList.add('painted-game-board')
 }
 
 function handleCellClick(index) {

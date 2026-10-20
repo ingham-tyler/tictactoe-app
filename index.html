@@ -2,16 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="src/styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Tic Tac Toe</title>
+        <link rel="stylesheet" href="src/styles.css">
+        <script type="module" src="src/script.js"></script>
     </head>
     <body>
-        <div id="game">
+        <main id="game">
             <h1>Tic Tac Toe</h1>
-            <div id="game-status">Player X's turn</div>
-            <div id="game-board"></div>
-            <button id="reset-btn">Reset Game</button>
-            <script type="module" src="src/script.js" defer></script>
-        </div>
+            <div id="game-status" aria-live="polite">Player X's turn</div>
+            <div class="board-area">
+                <div id="game-board"></div>
+            </div>
+            <button id="reset-btn" type="button">Reset Game</button>
+        </main>
     </body>
 </html>
