@@ -124,4 +124,4 @@ This project is licensed under the [MIT License](LICENSE). See the `LICENSE` fil
 
 Tyler Ingham - [email](tdingham31@gmail.com)
 
-See it [live](https://test.com)
+See it [live](https://tictactoe-de6d8.containers.snapdeploy.app/)
